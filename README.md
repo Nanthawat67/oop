@@ -52,6 +52,10 @@ markdown
 
 ---
 
+## ผลลัพล์ที่อยากได้
+
+<img width="253" height="262" alt="image" src="https://github.com/user-attachments/assets/51a3f107-3bce-42f2-80ff-3cbf20248c2f" />
+
 ## ▶ วิธีรันโปรแกรม
 
 ### วิธีที่ 1: DartPad (ไม่ต้องติดตั้ง)
@@ -158,6 +162,3 @@ void main() {
   laptop.displayInfo();
   milk.displayInfo();
 }
-
-<img width="253" height="262" alt="image" src="https://github.com/user-attachments/assets/2ed2063c-6d43-4e53-aa84-2ca5b770a9e6" />
-
