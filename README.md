@@ -65,30 +65,99 @@ markdown
 2. เปิด Terminal หรือ Command Prompt
 3. รันคำสั่ง
 ```bash
-dart run main.dart
-วิธีที่ 3: Visual Studio Code
-ติดตั้ง Dart SDK
+// ================= Base Class =================
+abstract class Product {
+  String _name;
+  double _price;
+  int _stock;
 
-ติดตั้ง Extension: Dart
+  Product(this._name, this._price, this._stock);
 
-เปิดไฟล์ main.dart
+  // Encapsulation
+  String get name => _name;
+  double get price => _price;
+  int get stock => _stock;
 
-กด Run หรือใช้ Terminal
+  set price(double newPrice) {
+    if (newPrice > 0) {
+      _price = newPrice;
+    }
+  }
 
-🧪 ตัวอย่างการทำงานของระบบ
-สร้างสินค้าอิเล็กทรอนิกส์ (Laptop)
+  void addStock(int amount) {
+    _stock += amount;
+  }
 
-สร้างสินค้าอาหาร (Milk)
+  void reduceStock(int amount) {
+    if (amount <= _stock) {
+      _stock -= amount;
+    }
+  }
 
-ปรับราคาด้วยส่วนลด
+  void applyDiscount(double percent) {
+    _price -= _price * (percent / 100);
+  }
 
-เพิ่มสต็อกสินค้า
+  // Polymorphism
+  void displayInfo();
+}
 
-แสดงข้อมูลสินค้าแต่ละประเภท
+// ================= Subclass =================
+class ElectronicProduct extends Product {
+  int warrantyYears;
 
-👨‍💻 ผู้พัฒนา
-ชื่อผู้จัดทำ: ______________________
+  ElectronicProduct(
+    String name,
+    double price,
+    int stock,
+    this.warrantyYears,
+  ) : super(name, price, stock);
 
-รหัสนักศึกษา: ______________________
+  @override
+  void displayInfo() {
+    print('''
+สินค้าอิเล็กทรอนิกส์
+ชื่อ: $name
+ราคา: $price บาท
+สต็อก: $stock ชิ้น
+ประกัน: $warrantyYears ปี
+''');
+  }
+}
 
-รายวิชา: Lab Dart03
+class FoodProduct extends Product {
+  String expiryDate;
+
+  FoodProduct(
+    String name,
+    double price,
+    int stock,
+    this.expiryDate,
+  ) : super(name, price, stock);
+
+  @override
+  void displayInfo() {
+    print('''
+สินค้าอาหาร
+ชื่อ: $name
+ราคา: $price บาท
+สต็อก: $stock ชิ้น
+วันหมดอายุ: $expiryDate
+''');
+  }
+}
+
+// ================= Main =================
+void main() {
+  Product laptop = ElectronicProduct('Laptop', 30000, 5, 2);
+  Product milk = FoodProduct('Milk', 25, 20, '30/12/2025');
+
+  laptop.applyDiscount(10);
+  milk.addStock(10);
+
+  laptop.displayInfo();
+  milk.displayInfo();
+}
+
+<img width="253" height="262" alt="image" src="https://github.com/user-attachments/assets/2ed2063c-6d43-4e53-aa84-2ca5b770a9e6" />
+
